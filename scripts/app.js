@@ -6,8 +6,6 @@ let isProducing = true;
 let isConsuming = true;
 
 const bufferElement = document.getElementById('buffer');
-const producerCountElement = document.getElementById('producerCount');
-const consumerCountElement = document.getElementById('consumerCount');
 
 function updateBufferDisplay() {
     bufferElement.innerHTML = buffer.map(item => `<div class="item">${item}</div>`).join('');
@@ -24,10 +22,8 @@ function produce() {
 
 function consume() {
     if (isConsuming && buffer.length > 0) {
-        const item = buffer.shift();
+        buffer.shift();
         updateBufferDisplay();
-        consumerCount++;
-        consumerCountElement.textContent = consumerCount;
         setTimeout(consume, Math.random() * 1000);
     }
 }
@@ -44,5 +40,5 @@ function stopSimulation() {
     isConsuming = false;
 }
 
-document.getElementById('startButton').addEventListener('click', startSimulation);
-document.getElementById('stopButton').addEventListener('click', stopSimulation);
+document.getElementById('start').addEventListener('click', startSimulation);
+document.getElementById('stop').addEventListener('click', stopSimulation);
